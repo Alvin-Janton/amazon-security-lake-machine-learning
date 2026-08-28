@@ -1,0 +1,1053 @@
+{
+  "/SageMakerDomainStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker-notebook-ml-insights-repository-URL": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakernotebookmlinsightsrepositoryURL"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:45:5)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/s3_access_logs": [
+    {
+      "type": "aws:cdk:acknowledged-rules",
+      "data": {
+        "CloudFormation-Validate::W3045": "accessControl is deprecated, but we are still using it for historical reasons."
+      },
+      "trace": [
+        "    ...new Bucket2 in aws-cdk-lib...",
+        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:261:37)",
+        "    at <anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "    ...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/SageMakerSecurityLakeDatabasePermissions": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SageMakerSecurityLakeDatabasePermissions"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:541:7)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/SageMakerSecurityLakeTablePermissions": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SageMakerSecurityLakeTablePermissions"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:555:7)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_domain": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerdomain"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:571:30)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_user_profile": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakeruserprofile"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:654:36)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_app": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerapp"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:704:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/ml_insights_workgroup": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "mlinsightsworkgroup"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:803:35)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_notebook_ml_insights_repository/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakernotebookmlinsightsrepository0055DB11"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Repository2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:39:55)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/athena_s3_output_kms_key/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "athenas3outputkmskeyB2EA73AE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Key2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:52:38)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_kms_key/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerkmskey9FC977A8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Key2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:61:31)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/cw_flow_logs/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "cwflowlogs3E4CC8F1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new LogGroup2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:69:26)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcF4C27260"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/IGW": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcIGW62C5BE15"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/VPCGW": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcVPCGW3DAD316F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/s3": [
+    {
+      "type": "aws:cdk:acknowledged-rules",
+      "data": {
+        "CloudFormation-Validate::F3002": "AWS::EC2::FlowLog DestinationOptions accepts properties in camelCase, even they are listed as PascalCase in the spec"
+      },
+      "trace": [
+        "    ...new Vpc2 in aws-cdk-lib...",
+        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "    at <anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "    ...node internals, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:acknowledged-rules",
+      "data": {
+        "CloudFormation-Validate::F3003": "AWS::EC2::FlowLog DestinationOptions accepts properties in camelCase, even they are listed as PascalCase in the spec"
+      },
+      "trace": [
+        "    ...new Vpc2 in aws-cdk-lib...",
+        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "    at <anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "    ...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_workload_sg/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerworkloadsg4E91CADE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new SecurityGroup2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:121:35)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:warning",
+      "data": "CdkNagValidationFailure[AwsSolutions-EC23]: 'AwsSolutions-EC23' threw an error during validation. This is generally caused by a parameter referencing an intrinsic function. You can suppress the \"CdkNagValidationFailure\" to get rid of this error. For more details enable verbose logging.' The parameter resolved to to a non-primitive value \"{\"Fn::GetAtt\":[\"sagemakervpcF4C27260\",\"CidrBlock\"]}\", therefore the rule could not be validated.\n",
+      "trace": [
+        "Annotations.addMessage (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:3506)",
+        "Annotations.addWarning (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:2300)",
+        "AnnotationLogger.onError (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\cdk-nag\\src\\nag-logger.ts:178:35)",
+        "C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\cdk-nag\\src\\nag-pack.ts:219:13",
+        "Array.forEach (<anonymous>)",
+        "AwsSolutionsChecks.applyRule (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\cdk-nag\\src\\nag-pack.ts:218:22)",
+        "AwsSolutionsChecks.checkCompute (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\cdk-nag\\src\\packs\\aws-solutions.ts:248:10)",
+        "AwsSolutionsChecks.visit (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\cdk-nag\\src\\packs\\aws-solutions.ts:199:12)",
+        "recurse (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:6189)",
+        "recurse (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:6447)",
+        "recurse (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:6447)",
+        "recurse (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:6447)",
+        "invokeAspectsV2 (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:4694)",
+        "synthesize (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:2523)",
+        "App.synth (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\stage.js:1:5061)",
+        "App.synth (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\core\\lib\\app.js:1:5008)",
+        "Object.<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:14:5)",
+        "Module._compile (node:internal/modules/cjs/loader:1760:14)",
+        "Module.m._compile (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\ts-node\\src\\index.ts:1618:23)",
+        "node:internal/modules/cjs/loader:1893:10",
+        "Object.require.extensions.<computed> [as .ts] (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\ts-node\\src\\index.ts:1621:12)",
+        "Module.load (node:internal/modules/cjs/loader:1480:32)",
+        "Module._load (node:internal/modules/cjs/loader:1299:12)",
+        "TracingChannel.traceSync (node:diagnostics_channel:328:14)",
+        "wrapModuleLoad (node:internal/modules/cjs/loader:244:24)",
+        "Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)",
+        "phase4 (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\ts-node\\src\\bin.ts:649:14)",
+        "bootstrap (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\ts-node\\src\\bin.ts:95:10)",
+        "main (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\ts-node\\src\\bin.ts:55:10)",
+        "Object.<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\ts-node\\src\\bin.ts:800:3)",
+        "Module._compile (node:internal/modules/cjs/loader:1760:14)",
+        "Object.<anonymous> (node:internal/modules/cjs/loader:1893:10)",
+        "Module.load (node:internal/modules/cjs/loader:1480:32)",
+        "Module._load (node:internal/modules/cjs/loader:1299:12)",
+        "TracingChannel.traceSync (node:diagnostics_channel:328:14)",
+        "wrapModuleLoad (node:internal/modules/cjs/loader:244:24)",
+        "Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)",
+        "node:internal/main/run_main_module:33:47"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_workload_sg/to SageMakerDomainStacksagemakerworkloadsg672AA727:8192-65535": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerworkloadsgtoSageMakerDomainStacksagemakerworkloadsg672AA727819265535F93A5AF4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...Connections.allowTo in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:128:39)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_workload_sg/to SageMakerDomainStacksagemakerworkloadsg672AA727:UDP 500": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerworkloadsgtoSageMakerDomainStacksagemakerworkloadsg672AA727UDP500C0A77A74"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...Connections.allowTo in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:129:39)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_workload_sg/to SageMakerDomainStacksagemakerworkloadsg672AA727:ESP 50": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerworkloadsgtoSageMakerDomainStacksagemakerworkloadsg672AA727ESP50F17CAE9E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...Connections.allowTo in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:130:39)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_workload_sg/from SageMakerDomainStacksagemakerworkloadsg672AA727:8192-65535": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerworkloadsgfromSageMakerDomainStacksagemakerworkloadsg672AA7278192655354B2C11AA"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...Connections.allowFrom in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:134:39)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_workload_sg/from SageMakerDomainStacksagemakerworkloadsg672AA727:UDP 500": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerworkloadsgfromSageMakerDomainStacksagemakerworkloadsg672AA727UDP50067D44643"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...Connections.allowFrom in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:135:39)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_workload_sg/from SageMakerDomainStacksagemakerworkloadsg672AA727:ESP 50": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerworkloadsgfromSageMakerDomainStacksagemakerworkloadsg672AA727ESP503B1FA902"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...Connections.allowFrom in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:136:39)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_workload_sg/from SageMakerDomainStacksagemakerworkloadsg672AA727:443": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerworkloadsgfromSageMakerDomainStacksagemakerworkloadsg672AA7274432749F487"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...Connections.allowFrom in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:137:39)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/s3_access_logs/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "s3accesslogs69FD450B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:242:28)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/athena_output_s3_bucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "athenaoutputs3bucket1FC1F53E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:261:37)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_user_profile_role/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakeruserprofilerole48818326"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Role2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:283:41)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/SageMakerStudioUserProfileManagedPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SageMakerStudioUserProfileManagedPolicy72CF6270"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ManagedPolicy2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:533:5)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_console_presigned_url_role/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerconsolepresignedurlrole8BC52AE0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Role2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:724:50)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/SageMakerStudioConsoleManagedPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SageMakerStudioConsoleManagedPolicyFF106714"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ManagedPolicy2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:783:5)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...App.synth in aws-cdk-lib...",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:14:5)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/athena_s3_output_kms_key/Alias/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "athenas3outputkmskeyAliasB2FB937D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Key2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:52:38)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_kms_key/Alias/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakerkmskeyAlias24AC49E5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Key2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:61:31)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/Subnet": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet1SubnetDA6D58A9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:268 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/RouteTable": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet1RouteTable0386F679"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:268 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/RouteTableAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet1RouteTableAssociation81895971"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:268 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/DefaultRoute": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet1DefaultRouteA3FC3F52"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:208 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/EIP": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet1EIP755B04ED"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/NATGateway": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet1NATGatewayEBB6F1D2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/Subnet": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet2Subnet92A751AA"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:268 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/RouteTable": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet2RouteTableBF7AB208"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:268 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/RouteTableAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet2RouteTableAssociation40677063"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:268 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/DefaultRoute": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet2DefaultRoute8C288D1B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:208 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/EIP": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet2EIPEE58DD51"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/NATGateway": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcpublicsubnetfornatgwSubnet2NATGatewayCFD47DA6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1/Subnet": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:270 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1/RouteTable": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcworkloadsubnetwithnatSubnet1RouteTable1AF7A758"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:270 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1/RouteTableAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcworkloadsubnetwithnatSubnet1RouteTableAssociation3F7BC4DB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:270 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1/DefaultRoute": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcworkloadsubnetwithnatSubnet1DefaultRoute402085FF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2/Subnet": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcworkloadsubnetwithnatSubnet2SubnetA6AC904D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:270 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2/RouteTable": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcworkloadsubnetwithnatSubnet2RouteTable96BAB171"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:270 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2/RouteTableAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcworkloadsubnetwithnatSubnet2RouteTableAssociation1F4EE855"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:270 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2/DefaultRoute": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcworkloadsubnetwithnatSubnet2DefaultRoute0056EC69"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/s3/FlowLog": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcs3FlowLog2333099F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/kms_endpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpckmsendpoint17CBE1EB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:139:19)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/sagemaker_api_endpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcsagemakerapiendpointE08FA5FE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:152:19)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/sagemaker_runtime_endpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcsagemakerruntimeendpointEE4FB0B5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:166:19)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/sagemaker_studio_endpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcsagemakerstudioendpoint0A632840"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:179:19)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/athena_endpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcathenaendpoint0F968085"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:192:19)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/s3_endpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcs3endpoint6B78406E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:205:19)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/codecommit_endpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpccodecommitendpoint32F5750F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:217:19)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/codecommit_git_endpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpccodecommitgitendpointC11F07E3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:229:19)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/s3_access_logs/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "s3accesslogsPolicyB3A0C63D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:242:28)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/athena_output_s3_bucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "athenaoutputs3bucketPolicy0078123F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:261:37)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/s3/IAMRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcs3IAMRole1CC5483B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
+      ]
+    }
+  ],
+  "/SageMakerDomainStack/sagemaker_vpc/s3/IAMRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "sagemakervpcs3IAMRoleDefaultPolicyFC49EB60"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ]
+}

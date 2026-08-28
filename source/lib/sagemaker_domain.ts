@@ -1,4 +1,4 @@
-import { CfnParameter, Stack, StackProps, Duration, RemovalPolicy, CustomResource, CfnOutput, Fn, DefaultStackSynthesizer } from "aws-cdk-lib";
+import { Stack, StackProps, Duration, RemovalPolicy, CfnOutput } from "aws-cdk-lib";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 import { Key } from "aws-cdk-lib/aws-kms";
@@ -8,35 +8,32 @@ import { FlowLogDestination, FlowLogTrafficType, Vpc, SubnetType, SecurityGroup,
 import { LogGroup, RetentionDays } from "aws-cdk-lib/aws-logs";
 import * as codecommit from 'aws-cdk-lib/aws-codecommit';
 import * as athena from 'aws-cdk-lib/aws-athena';
-import { BlockPublicAccess, Bucket, BucketAccessControl, BucketEncryption, ObjectOwnership, StorageClass } from "aws-cdk-lib/aws-s3";
+import { BlockPublicAccess, Bucket, BucketEncryption, ObjectOwnership, StorageClass } from "aws-cdk-lib/aws-s3";
 import { EncryptionOption } from "aws-cdk-lib/aws-stepfunctions-tasks";
 import { NagSuppressions } from 'cdk-nag';
-import { CfnDatabase } from "aws-cdk-lib/aws-glue";
-import { CfnDataLakeSettings, CfnPrincipalPermissions, CfnPermissions } from "aws-cdk-lib/aws-lakeformation";
-import { strict } from "assert";
+import { CfnPrincipalPermissions } from "aws-cdk-lib/aws-lakeformation";
 
 export class SageMakerDomainStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    // Parameters to set
-    const sagemaker_restrict_cidr_presigned_url = new CfnParameter(this, "sagemaker_restrict_cidr_presigned_url", {
-      description: "The IP address to limit accessing SageMaker Studio presigned URL.",
-      default: "0.0.0.0/0",
-      type: "String"
-    }); 
+    const contextString = (key: string, defaultValue: string): string => {
+      const value = this.node.tryGetContext(key);
+      return value === undefined ? defaultValue : value;
+    };
 
-    const IAM_role_assumption_for_sagemaker_presigned_url = new CfnParameter(this, "IAM_role_assumption_for_sagemaker_presigned_url", {
-      description: "IAM role to update the trust relationship to allow access to create and access SageMaker Studio's presigned URL.",
-      default: "arn:aws:iam::1234:role/Admin",
-      type: "String"
-    });
+    const contextBoolean = (key: string, defaultValue: boolean): boolean => {
+      const value = this.node.tryGetContext(key);
+      return value === undefined ? defaultValue : value;
+    };
 
-    const security_lake_aws_account = new CfnParameter(this, "security_lake_aws_account", {
-      description: "AWS Account where Security Lake has been initially deployed and shared from.",
-      default: "1234",
-      type: "String"
-    });
+    const sagemaker_restrict_cidr_presigned_url = contextString("sagemakerRestrictCidrPresignedUrl", "0.0.0.0/0");
+    const sagemaker_presigned_url_trusted_principal_arn = contextString("sagemakerPresignedUrlTrustedPrincipalArn", "arn:aws:iam::123456789012:role/Admin");
+    const cw_vpc_flow_logs_log_group_name = contextString("cloudWatchVpcFlowLogsLogGroupName", "/aws/vpc/flowlogs/SageMakerDomainStack");
+    const security_lake_database_name = contextString("securityLakeDatabaseName", "amazon_security_lake_glue_db_us_east_1");
+    const security_lake_table_name = contextString("securityLakeTableName", "amazon_security_lake_table_us_east_1_sh_findings_2_0");
+    const athena_workgroup_name = contextString("athenaWorkgroupName", "security_lake_insights");
+    const create_lake_formation_permissions = contextBoolean("createLakeFormationPermissions", false);
 
     // CodeCommit repository
     const sagemaker_notebook_ml_insights_repository = new codecommit.Repository(this, 'sagemaker_notebook_ml_insights_repository', {
@@ -69,15 +66,8 @@ export class SageMakerDomainStack extends Stack {
       alias: "sagemaker_domain_kms_key"
     });
 
-    // Create new VPC with flow logs and Pub/Priv Subnets
-    const cw_vpc_flow_logs_parameter = new CfnParameter(this, "cw_flow_logs_parameter", {
-      type: "String",
-      description: "The cloudwatch log group name for VPC flow logs.",
-      default: "/aws/vpc/flowlogs/SageMakerDomainStack",
-    });
-
     const cw_flow_logs = new LogGroup(this, "cw_flow_logs", {
-      logGroupName: cw_vpc_flow_logs_parameter.valueAsString,
+      logGroupName: cw_vpc_flow_logs_log_group_name,
       removalPolicy: RemovalPolicy.DESTROY,
       retention: RetentionDays.ONE_YEAR,
       encryptionKey: sagemaker_kms_key
@@ -100,7 +90,7 @@ export class SageMakerDomainStack extends Stack {
       conditions:{
         ArnEquals:{
           "kms:EncryptionContext:aws:logs:arn": [
-            "arn:aws:logs:" + this.region + ":" + this.account+ ":log-group:" + cw_vpc_flow_logs_parameter.valueAsString
+            "arn:aws:logs:" + this.region + ":" + this.account+ ":log-group:" + cw_vpc_flow_logs_log_group_name
           ]
         }} 
     }));
@@ -386,9 +376,6 @@ export class SageMakerDomainStack extends Stack {
             "arn:aws:glue:" + this.region + ":" + this.account +":database/*",
             "arn:aws:glue:" + this.region + ":" + this.account +":table/*",
             "arn:aws:glue:" + this.region + ":" + this.account +":catalog",
-            "arn:aws:glue:" + this.region + ":" + security_lake_aws_account.valueAsString +":database/*",
-            "arn:aws:glue:" + this.region + ":" + security_lake_aws_account.valueAsString +":table/*",
-            "arn:aws:glue:" + this.region + ":" + security_lake_aws_account.valueAsString +":catalog",
           ]   
         }),
         new iam.PolicyStatement({
@@ -550,6 +537,37 @@ export class SageMakerDomainStack extends Stack {
       roles: [sagemaker_user_profile_role]
     });
 
+    if (create_lake_formation_permissions) {
+      new CfnPrincipalPermissions(this, "SageMakerSecurityLakeDatabasePermissions", {
+        principal: {
+          dataLakePrincipalIdentifier: sagemaker_user_profile_role.roleArn,
+        },
+        resource: {
+          database: {
+            catalogId: this.account,
+            name: security_lake_database_name,
+          },
+        },
+        permissions: ["DESCRIBE"],
+        permissionsWithGrantOption: [],
+      });
+
+      new CfnPrincipalPermissions(this, "SageMakerSecurityLakeTablePermissions", {
+        principal: {
+          dataLakePrincipalIdentifier: sagemaker_user_profile_role.roleArn,
+        },
+        resource: {
+          table: {
+            catalogId: this.account,
+            databaseName: security_lake_database_name,
+            name: security_lake_table_name,
+          },
+        },
+        permissions: ["DESCRIBE", "SELECT"],
+        permissionsWithGrantOption: [],
+      });
+    }
+
     const sagemaker_domain = new CfnDomain(this, "sagemaker_domain", {
       authMode: "IAM",
       defaultUserSettings: {
@@ -705,7 +723,7 @@ export class SageMakerDomainStack extends Stack {
     // IAM Role for SageMaker user profiles
     const sagemaker_console_presigned_url_role = new iam.Role(this, "sagemaker_console_presigned_url_role", {
       assumedBy: new iam.CompositePrincipal(
-        new iam.ArnPrincipal(IAM_role_assumption_for_sagemaker_presigned_url.valueAsString),
+        new iam.ArnPrincipal(sagemaker_presigned_url_trusted_principal_arn),
       ),
       roleName: "sagemaker-console-presigned-url-role",
       // managedPolicies: [
@@ -726,7 +744,7 @@ export class SageMakerDomainStack extends Stack {
           conditions: {
             IpAddress:{
               "aws:SourceIp": [
-                sagemaker_restrict_cidr_presigned_url.valueAsString
+                sagemaker_restrict_cidr_presigned_url
               ]
             }}   
         }),
@@ -783,7 +801,7 @@ export class SageMakerDomainStack extends Stack {
     }));
 
     const ml_insights_workgroup = new athena.CfnWorkGroup(this, 'ml_insights_workgroup', {
-      name: 'security_lake_insights',
+      name: athena_workgroup_name,
       // the properties below are optional
       description: 'Workgroup for Security Lake ML Insights.',
       recursiveDeleteOption: true,

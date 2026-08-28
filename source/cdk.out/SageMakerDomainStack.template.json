@@ -1,0 +1,2149 @@
+{
+ "Resources": {
+  "sagemakernotebookmlinsightsrepository0055DB11": {
+   "Type": "AWS::CodeCommit::Repository",
+   "Properties": {
+    "Code": {
+     "BranchName": "main",
+     "S3": {
+      "Bucket": "cdk-hnb659fds-assets-522814735684-us-east-1",
+      "Key": "269fdf0d823a3f2db8fe94c0a40131033cb75aaa6af40f0003877c6e1797917d.zip"
+     }
+    },
+    "RepositoryDescription": "Repository for SageMaker notebooks to run analytics for Security Lake.",
+    "RepositoryName": "sagemaker_ml_insights_repo"
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_notebook_ml_insights_repository/Resource"
+   }
+  },
+  "athenas3outputkmskeyB2EA73AE": {
+   "Type": "AWS::KMS::Key",
+   "Properties": {
+    "Description": "KMS key for S3 bucket to store athena workgroup output.",
+    "EnableKeyRotation": true,
+    "KeyPolicy": {
+     "Statement": [
+      {
+       "Action": "kms:*",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::522814735684:root"
+          ]
+         ]
+        }
+       },
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "sagemakeruserprofilerole48818326",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PendingWindowInDays": 7
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/athena_s3_output_kms_key/Resource"
+   }
+  },
+  "athenas3outputkmskeyAliasB2FB937D": {
+   "Type": "AWS::KMS::Alias",
+   "Properties": {
+    "AliasName": "alias/athena_s3_output_kms_key",
+    "TargetKeyId": {
+     "Fn::GetAtt": [
+      "athenas3outputkmskeyB2EA73AE",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/athena_s3_output_kms_key/Alias/Resource"
+   }
+  },
+  "sagemakerkmskey9FC977A8": {
+   "Type": "AWS::KMS::Key",
+   "Properties": {
+    "Description": "KMS key for SageMaker Domain resources.",
+    "EnableKeyRotation": true,
+    "KeyPolicy": {
+     "Statement": [
+      {
+       "Action": "kms:*",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::522814735684:root"
+          ]
+         ]
+        }
+       },
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "kms:Decrypt*",
+        "kms:Describe*",
+        "kms:Encrypt*",
+        "kms:GenerateDataKey*",
+        "kms:ReEncrypt*"
+       ],
+       "Condition": {
+        "ArnEquals": {
+         "kms:EncryptionContext:aws:logs:arn": [
+          "arn:aws:logs:us-east-1:522814735684:log-group:/aws/vpc/flowlogs/SageMakerDomainStack"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "logs.us-east-1.amazonaws.com"
+       },
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "kms:CreateGrant",
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:GenerateDataKey"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "sagemakeruserprofilerole48818326",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PendingWindowInDays": 7
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_kms_key/Resource"
+   }
+  },
+  "sagemakerkmskeyAlias24AC49E5": {
+   "Type": "AWS::KMS::Alias",
+   "Properties": {
+    "AliasName": "alias/sagemaker_domain_kms_key",
+    "TargetKeyId": {
+     "Fn::GetAtt": [
+      "sagemakerkmskey9FC977A8",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_kms_key/Alias/Resource"
+   }
+  },
+  "cwflowlogs3E4CC8F1": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "KmsKeyId": {
+     "Fn::GetAtt": [
+      "sagemakerkmskey9FC977A8",
+      "Arn"
+     ]
+    },
+    "LogGroupName": "/aws/vpc/flowlogs/SageMakerDomainStack",
+    "RetentionInDays": 365
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/cw_flow_logs/Resource"
+   }
+  },
+  "sagemakervpcF4C27260": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/Resource"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet1SubnetDA6D58A9": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-1a",
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public_subnet_for_nat_gw"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/Subnet"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet1RouteTable0386F679": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/RouteTable"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet1RouteTableAssociation81895971": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet1RouteTable0386F679"
+    },
+    "SubnetId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet1SubnetDA6D58A9"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/RouteTableAssociation"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet1DefaultRouteA3FC3F52": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "sagemakervpcIGW62C5BE15"
+    },
+    "RouteTableId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet1RouteTable0386F679"
+    }
+   },
+   "DependsOn": [
+    "sagemakervpcVPCGW3DAD316F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/DefaultRoute"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet1EIP755B04ED": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/EIP"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet1NATGatewayEBB6F1D2": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "sagemakervpcpublicsubnetfornatgwSubnet1EIP755B04ED",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet1SubnetDA6D58A9"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "sagemakervpcpublicsubnetfornatgwSubnet1DefaultRouteA3FC3F52",
+    "sagemakervpcpublicsubnetfornatgwSubnet1RouteTableAssociation81895971"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet1/NATGateway"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet2Subnet92A751AA": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-1b",
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public_subnet_for_nat_gw"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/Subnet"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet2RouteTableBF7AB208": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/RouteTable"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet2RouteTableAssociation40677063": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet2RouteTableBF7AB208"
+    },
+    "SubnetId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet2Subnet92A751AA"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/RouteTableAssociation"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet2DefaultRoute8C288D1B": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "sagemakervpcIGW62C5BE15"
+    },
+    "RouteTableId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet2RouteTableBF7AB208"
+    }
+   },
+   "DependsOn": [
+    "sagemakervpcVPCGW3DAD316F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/DefaultRoute"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet2EIPEE58DD51": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/EIP"
+   }
+  },
+  "sagemakervpcpublicsubnetfornatgwSubnet2NATGatewayCFD47DA6": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "sagemakervpcpublicsubnetfornatgwSubnet2EIPEE58DD51",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet2Subnet92A751AA"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "sagemakervpcpublicsubnetfornatgwSubnet2DefaultRoute8C288D1B",
+    "sagemakervpcpublicsubnetfornatgwSubnet2RouteTableAssociation40677063"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/public_subnet_for_nat_gwSubnet2/NATGateway"
+   }
+  },
+  "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-1a",
+    "CidrBlock": "10.0.2.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "workload_subnet_with_nat"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1/Subnet"
+   }
+  },
+  "sagemakervpcworkloadsubnetwithnatSubnet1RouteTable1AF7A758": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1/RouteTable"
+   }
+  },
+  "sagemakervpcworkloadsubnetwithnatSubnet1RouteTableAssociation3F7BC4DB": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1RouteTable1AF7A758"
+    },
+    "SubnetId": {
+     "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1/RouteTableAssociation"
+   }
+  },
+  "sagemakervpcworkloadsubnetwithnatSubnet1DefaultRoute402085FF": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet1NATGatewayEBB6F1D2"
+    },
+    "RouteTableId": {
+     "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1RouteTable1AF7A758"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet1/DefaultRoute"
+   }
+  },
+  "sagemakervpcworkloadsubnetwithnatSubnet2SubnetA6AC904D": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-1b",
+    "CidrBlock": "10.0.3.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "workload_subnet_with_nat"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2/Subnet"
+   }
+  },
+  "sagemakervpcworkloadsubnetwithnatSubnet2RouteTable96BAB171": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2/RouteTable"
+   }
+  },
+  "sagemakervpcworkloadsubnetwithnatSubnet2RouteTableAssociation1F4EE855": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "sagemakervpcworkloadsubnetwithnatSubnet2RouteTable96BAB171"
+    },
+    "SubnetId": {
+     "Ref": "sagemakervpcworkloadsubnetwithnatSubnet2SubnetA6AC904D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2/RouteTableAssociation"
+   }
+  },
+  "sagemakervpcworkloadsubnetwithnatSubnet2DefaultRoute0056EC69": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "sagemakervpcpublicsubnetfornatgwSubnet2NATGatewayCFD47DA6"
+    },
+    "RouteTableId": {
+     "Ref": "sagemakervpcworkloadsubnetwithnatSubnet2RouteTable96BAB171"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/workload_subnet_with_natSubnet2/DefaultRoute"
+   }
+  },
+  "sagemakervpcIGW62C5BE15": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/IGW"
+   }
+  },
+  "sagemakervpcVPCGW3DAD316F": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "sagemakervpcIGW62C5BE15"
+    },
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/VPCGW"
+   }
+  },
+  "sagemakervpcs3IAMRole1CC5483B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "vpc-flow-logs.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/s3"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/s3/IAMRole/Resource"
+   }
+  },
+  "sagemakervpcs3IAMRoleDefaultPolicyFC49EB60": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:DescribeLogStreams",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "cwflowlogs3E4CC8F1",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "sagemakervpcs3IAMRoleDefaultPolicyFC49EB60",
+    "Roles": [
+     {
+      "Ref": "sagemakervpcs3IAMRole1CC5483B"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/s3/IAMRole/DefaultPolicy/Resource"
+   }
+  },
+  "sagemakervpcs3FlowLog2333099F": {
+   "Type": "AWS::EC2::FlowLog",
+   "Properties": {
+    "DeliverLogsPermissionArn": {
+     "Fn::GetAtt": [
+      "sagemakervpcs3IAMRole1CC5483B",
+      "Arn"
+     ]
+    },
+    "LogDestinationType": "cloud-watch-logs",
+    "LogGroupName": {
+     "Ref": "cwflowlogs3E4CC8F1"
+    },
+    "ResourceId": {
+     "Ref": "sagemakervpcF4C27260"
+    },
+    "ResourceType": "VPC",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc/s3"
+     }
+    ],
+    "TrafficType": "ALL"
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/s3/FlowLog"
+   }
+  },
+  "sagemakervpckmsendpoint17CBE1EB": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "sagemakerworkloadsg4E91CADE",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.kms",
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/kms_endpoint/Resource"
+   }
+  },
+  "sagemakervpcsagemakerapiendpointE08FA5FE": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "sagemakerworkloadsg4E91CADE",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.sagemaker.api",
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/sagemaker_api_endpoint/Resource"
+   }
+  },
+  "sagemakervpcsagemakerruntimeendpointEE4FB0B5": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "sagemakerworkloadsg4E91CADE",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.sagemaker.runtime",
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/sagemaker_runtime_endpoint/Resource"
+   }
+  },
+  "sagemakervpcsagemakerstudioendpoint0A632840": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "sagemakerworkloadsg4E91CADE",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "aws.sagemaker.us-east-1.studio",
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/sagemaker_studio_endpoint/Resource"
+   }
+  },
+  "sagemakervpcathenaendpoint0F968085": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "sagemakerworkloadsg4E91CADE",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.athena",
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/athena_endpoint/Resource"
+   }
+  },
+  "sagemakervpcs3endpoint6B78406E": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": false,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "sagemakerworkloadsg4E91CADE",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.s3",
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/s3_endpoint/Resource"
+   }
+  },
+  "sagemakervpccodecommitendpoint32F5750F": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "sagemakerworkloadsg4E91CADE",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.codecommit",
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/codecommit_endpoint/Resource"
+   }
+  },
+  "sagemakervpccodecommitgitendpointC11F07E3": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "sagemakerworkloadsg4E91CADE",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.git-codecommit",
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SageMakerDomainStack/sagemaker_vpc"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_vpc/codecommit_git_endpoint/Resource"
+   }
+  },
+  "sagemakerworkloadsg4E91CADE": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "SageMaker Workload SG",
+    "GroupName": "sagemaker_workload_sg",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow HTTPS Outbound for egress-only internet access",
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow HTTP Outbound for egress-only internet access",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "sagemakervpcF4C27260",
+        "CidrBlock"
+       ]
+      },
+      "Description": {
+       "Fn::Join": [
+        "",
+        [
+         "from ",
+         {
+          "Fn::GetAtt": [
+           "sagemakervpcF4C27260",
+           "CidrBlock"
+          ]
+         },
+         ":443"
+        ]
+       ]
+      },
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_workload_sg/Resource"
+   }
+  },
+  "sagemakerworkloadsgtoSageMakerDomainStacksagemakerworkloadsg672AA727819265535F93A5AF4": {
+   "Type": "AWS::EC2::SecurityGroupEgress",
+   "Properties": {
+    "Description": "Communication required with SageMaker service-owned VPC",
+    "DestinationSecurityGroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "FromPort": 8192,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "ToPort": 65535
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_workload_sg/to SageMakerDomainStacksagemakerworkloadsg672AA727:8192-65535"
+   }
+  },
+  "sagemakerworkloadsgtoSageMakerDomainStacksagemakerworkloadsg672AA727UDP500C0A77A74": {
+   "Type": "AWS::EC2::SecurityGroupEgress",
+   "Properties": {
+    "Description": "Communication required with SageMaker service-owned VPC",
+    "DestinationSecurityGroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "FromPort": 500,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "udp",
+    "ToPort": 500
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_workload_sg/to SageMakerDomainStacksagemakerworkloadsg672AA727:UDP 500"
+   }
+  },
+  "sagemakerworkloadsgtoSageMakerDomainStacksagemakerworkloadsg672AA727ESP50F17CAE9E": {
+   "Type": "AWS::EC2::SecurityGroupEgress",
+   "Properties": {
+    "Description": "Communication required with SageMaker service-owned VPC",
+    "DestinationSecurityGroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "FromPort": 50,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "50",
+    "ToPort": 50
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_workload_sg/to SageMakerDomainStacksagemakerworkloadsg672AA727:ESP 50"
+   }
+  },
+  "sagemakerworkloadsgfromSageMakerDomainStacksagemakerworkloadsg672AA7278192655354B2C11AA": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Communication required with SageMaker service-owned VPC",
+    "FromPort": 8192,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "ToPort": 65535
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_workload_sg/from SageMakerDomainStacksagemakerworkloadsg672AA727:8192-65535"
+   }
+  },
+  "sagemakerworkloadsgfromSageMakerDomainStacksagemakerworkloadsg672AA727UDP50067D44643": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Communication required with SageMaker service-owned VPC",
+    "FromPort": 500,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "udp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "ToPort": 500
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_workload_sg/from SageMakerDomainStacksagemakerworkloadsg672AA727:UDP 500"
+   }
+  },
+  "sagemakerworkloadsgfromSageMakerDomainStacksagemakerworkloadsg672AA727ESP503B1FA902": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Communication required with SageMaker service-owned VPC",
+    "FromPort": 50,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "50",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "ToPort": 50
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_workload_sg/from SageMakerDomainStacksagemakerworkloadsg672AA727:ESP 50"
+   }
+  },
+  "sagemakerworkloadsgfromSageMakerDomainStacksagemakerworkloadsg672AA7274432749F487": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Allow HTTPS Inbound for VPC interface endpoint",
+    "FromPort": 443,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "sagemakerworkloadsg4E91CADE",
+      "GroupId"
+     ]
+    },
+    "ToPort": 443
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_workload_sg/from SageMakerDomainStacksagemakerworkloadsg672AA727:443"
+   }
+  },
+  "s3accesslogs69FD450B": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "AccessControl": "LogDeliveryWrite",
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "BucketKeyEnabled": true,
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "aws:kms"
+       }
+      }
+     ]
+    },
+    "BucketName": "athena-ml-insights-s3-access-logs-522814735684",
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "ExpirationInDays": 365,
+       "Status": "Enabled",
+       "Transitions": [
+        {
+         "StorageClass": "INTELLIGENT_TIERING",
+         "TransitionInDays": 31
+        }
+       ]
+      }
+     ]
+    },
+    "OwnershipControls": {
+     "Rules": [
+      {
+       "ObjectOwnership": "BucketOwnerPreferred"
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "VersioningConfiguration": {
+     "Status": "Enabled"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/s3_access_logs/Resource"
+   }
+  },
+  "s3accesslogsPolicyB3A0C63D": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "s3accesslogs69FD450B"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "s3accesslogs69FD450B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "s3accesslogs69FD450B",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/s3_access_logs/Policy/Resource"
+   }
+  },
+  "athenaoutputs3bucket1FC1F53E": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "BucketKeyEnabled": true,
+       "ServerSideEncryptionByDefault": {
+        "KMSMasterKeyID": {
+         "Fn::GetAtt": [
+          "athenas3outputkmskeyB2EA73AE",
+          "Arn"
+         ]
+        },
+        "SSEAlgorithm": "aws:kms"
+       }
+      }
+     ]
+    },
+    "BucketName": "athena-ml-insights-bucket-results-522814735684",
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "ExpirationInDays": 365,
+       "Status": "Enabled",
+       "Transitions": [
+        {
+         "StorageClass": "INTELLIGENT_TIERING",
+         "TransitionInDays": 31
+        }
+       ]
+      }
+     ]
+    },
+    "LoggingConfiguration": {
+     "DestinationBucketName": {
+      "Ref": "s3accesslogs69FD450B"
+     }
+    },
+    "OwnershipControls": {
+     "Rules": [
+      {
+       "ObjectOwnership": "BucketOwnerPreferred"
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "VersioningConfiguration": {
+     "Status": "Enabled"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/athena_output_s3_bucket/Resource"
+   }
+  },
+  "athenaoutputs3bucketPolicy0078123F": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "athenaoutputs3bucket1FC1F53E"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "athenaoutputs3bucket1FC1F53E",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "athenaoutputs3bucket1FC1F53E",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:DeleteObject",
+        "s3:GetBucketLocation",
+        "s3:PutObject",
+        "s3:PutObjectAcl"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "sagemakeruserprofilerole48818326",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "athenaoutputs3bucket1FC1F53E",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "athenaoutputs3bucket1FC1F53E",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/athena_output_s3_bucket/Policy/Resource"
+   }
+  },
+  "sagemakeruserprofilerole48818326": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "sagemaker.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "RoleName": "sagemaker-user-profile-for-security-lake"
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_user_profile_role/Resource"
+   }
+  },
+  "SageMakerStudioUserProfileManagedPolicy72CF6270": {
+   "Type": "AWS::IAM::ManagedPolicy",
+   "Properties": {
+    "Description": "Managed policy associated to the SageMaker Studios user profile.",
+    "ManagedPolicyName": "sagemaker-studio-user-security-lake-policy",
+    "Path": "/",
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:logs:us-east-1:522814735684:log-group:/aws/sagemaker/studio:*",
+       "Sid": "CloudWatchLogGroupAllow"
+      },
+      {
+       "Action": "s3:ListBucket",
+       "Effect": "Allow",
+       "Resource": "*",
+       "Sid": "S3Read"
+      },
+      {
+       "Action": [
+        "s3:AbortMultipartUpload",
+        "s3:DeleteObject",
+        "s3:GetBucketAcl",
+        "s3:GetBucketLocation",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:PutObject",
+        "s3:PutObjectAcl"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "athenaoutputs3bucket1FC1F53E",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "athenaoutputs3bucket1FC1F53E",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ],
+       "Sid": "S3Allow"
+      },
+      {
+       "Action": [
+        "athena:Get*",
+        "athena:List*",
+        "athena:StartQueryExecution",
+        "athena:StartSession",
+        "athena:StopQueryExecution"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:athena:us-east-1:522814735684:datacatalog/*",
+        "arn:aws:athena:us-east-1:522814735684:workgroup/*"
+       ],
+       "Sid": "AthenaAllow"
+      },
+      {
+       "Action": [
+        "glue:BatchGetPartition",
+        "glue:CreateDatabase",
+        "glue:GetDatabase",
+        "glue:GetDatabases",
+        "glue:GetPartition",
+        "glue:GetPartitions",
+        "glue:GetTable",
+        "glue:GetTables"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:glue:us-east-1:522814735684:catalog",
+        "arn:aws:glue:us-east-1:522814735684:database/*",
+        "arn:aws:glue:us-east-1:522814735684:table/*"
+       ],
+       "Sid": "GlueAllow"
+      },
+      {
+       "Action": "lakeformation:GetDataAccess",
+       "Effect": "Allow",
+       "Resource": "*",
+       "Sid": "LakeFormationAllow"
+      },
+      {
+       "Action": [
+        "codecommit:BatchDescribeMergeConflicts",
+        "codecommit:BatchGet*",
+        "codecommit:CreateBranch",
+        "codecommit:CreateCommit",
+        "codecommit:CreatePullRequest",
+        "codecommit:CreatePullRequestApprovalRule",
+        "codecommit:CreateUnreferencedMergeCommit",
+        "codecommit:DeleteBranch",
+        "codecommit:DeletePullRequestApprovalRule",
+        "codecommit:Describe*",
+        "codecommit:EvaluatePullRequestApprovalRules",
+        "codecommit:Get*",
+        "codecommit:GitPull",
+        "codecommit:GitPush",
+        "codecommit:List*",
+        "codecommit:MergeBranchesBy*",
+        "codecommit:MergePullRequestBy*",
+        "codecommit:PostCommentForPullRequest",
+        "codecommit:PutFile",
+        "codecommit:UpdateDefaultBranch",
+        "codecommit:UpdatePullRequest*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "sagemakernotebookmlinsightsrepository0055DB11",
+         "Arn"
+        ]
+       },
+       "Sid": "CodeCommitAllow"
+      },
+      {
+       "Action": "sagemaker:*",
+       "Effect": "Allow",
+       "NotResource": [
+        "arn:aws:sagemaker:*:*:domain/*",
+        "arn:aws:sagemaker:*:*:user-profile/*",
+        "arn:aws:sagemaker:*:*:app/*",
+        "arn:aws:sagemaker:*:*:flow-definition/*"
+       ],
+       "Sid": "SageMakerNotResourceAllow"
+      },
+      {
+       "Action": [
+        "sagemaker:*App",
+        "sagemaker:CreatePresignedDomainUrl",
+        "sagemaker:DescribeDomain",
+        "sagemaker:DescribeUserProfile",
+        "sagemaker:ListApps",
+        "sagemaker:ListDomains",
+        "sagemaker:ListUserProfiles"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:sagemaker:*:*:app/*",
+        "arn:aws:sagemaker:*:*:domain/*",
+        "arn:aws:sagemaker:*:*:flow-definition/*",
+        "arn:aws:sagemaker:*:*:user-profile/*"
+       ],
+       "Sid": "SageMakerDomainAllow"
+      },
+      {
+       "Action": "iam:PassRole",
+       "Condition": {
+        "StringEqualsIfExists": {
+         "sagemaker:WorkteamType": [
+          "private-crowd",
+          "vendor-crowd"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Resource": "arn:aws:sagemaker:us-east-1:522814735684:flow-definition/*",
+       "Sid": "SageMakerWorkstream"
+      },
+      {
+       "Action": "iam:PassRole",
+       "Condition": {
+        "StringLike": {
+         "iam:PassedToService": [
+          "glue.amazonaws.com",
+          "robomaker.amazonaws.com",
+          "states.amazonaws.com",
+          "sagemaker.amazonaws.com"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "sagemakeruserprofilerole48818326",
+         "Arn"
+        ]
+       },
+       "Sid": "IAMPassRoleService"
+      },
+      {
+       "Action": [
+        "kms:CreateGrant",
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:GenerateDataKey",
+        "kms:ReEncrypt*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "athenas3outputkmskeyB2EA73AE",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "sagemakerkmskey9FC977A8",
+          "Arn"
+         ]
+        }
+       ],
+       "Sid": "KMSEncrypt"
+      },
+      {
+       "Action": "sagemaker:CreateApp",
+       "Effect": "Allow",
+       "Resource": "arn:aws:sagemaker:us-east-1:522814735684:app/*",
+       "Sid": "SageMakerPermissions"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Roles": [
+     {
+      "Ref": "sagemakeruserprofilerole48818326"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/SageMakerStudioUserProfileManagedPolicy/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "The specific actions in the S3Read and LakeFormationAllow SID require * resource. The actions are all read-only.",
+       "id": "AwsSolutions-IAM5"
+      }
+     ]
+    }
+   }
+  },
+  "SageMakerSecurityLakeDatabasePermissions": {
+   "Type": "AWS::LakeFormation::PrincipalPermissions",
+   "Properties": {
+    "Permissions": [
+     "DESCRIBE"
+    ],
+    "PermissionsWithGrantOption": [],
+    "Principal": {
+     "DataLakePrincipalIdentifier": {
+      "Fn::GetAtt": [
+       "sagemakeruserprofilerole48818326",
+       "Arn"
+      ]
+     }
+    },
+    "Resource": {
+     "Database": {
+      "CatalogId": "522814735684",
+      "Name": "amazon_security_lake_glue_db_us_east_1"
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/SageMakerSecurityLakeDatabasePermissions"
+   }
+  },
+  "SageMakerSecurityLakeTablePermissions": {
+   "Type": "AWS::LakeFormation::PrincipalPermissions",
+   "Properties": {
+    "Permissions": [
+     "DESCRIBE",
+     "SELECT"
+    ],
+    "PermissionsWithGrantOption": [],
+    "Principal": {
+     "DataLakePrincipalIdentifier": {
+      "Fn::GetAtt": [
+       "sagemakeruserprofilerole48818326",
+       "Arn"
+      ]
+     }
+    },
+    "Resource": {
+     "Table": {
+      "CatalogId": "522814735684",
+      "DatabaseName": "amazon_security_lake_glue_db_us_east_1",
+      "Name": "amazon_security_lake_table_us_east_1_sh_findings_2_0"
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/SageMakerSecurityLakeTablePermissions"
+   }
+  },
+  "sagemakerdomain": {
+   "Type": "AWS::SageMaker::Domain",
+   "Properties": {
+    "AppNetworkAccessType": "VpcOnly",
+    "AuthMode": "IAM",
+    "DefaultUserSettings": {
+     "ExecutionRole": {
+      "Fn::GetAtt": [
+       "sagemakeruserprofilerole48818326",
+       "Arn"
+      ]
+     },
+     "JupyterServerAppSettings": {
+      "DefaultResourceSpec": {
+       "InstanceType": "system"
+      }
+     },
+     "KernelGatewayAppSettings": {
+      "DefaultResourceSpec": {
+       "InstanceType": "ml.t3.medium",
+       "SageMakerImageArn": "arn:aws:sagemaker:us-east-1:081325390199:image/datascience-1.0"
+      }
+     },
+     "SecurityGroups": [
+      {
+       "Fn::GetAtt": [
+        "sagemakerworkloadsg4E91CADE",
+        "GroupId"
+       ]
+      }
+     ]
+    },
+    "DomainName": "security-lake-ml-insights-522814735684",
+    "KmsKeyId": {
+     "Ref": "sagemakerkmskey9FC977A8"
+    },
+    "SubnetIds": [
+     {
+      "Ref": "sagemakervpcworkloadsubnetwithnatSubnet1Subnet06109212"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "project",
+      "Value": "security-lake-ml-insights"
+     }
+    ],
+    "VpcId": {
+     "Ref": "sagemakervpcF4C27260"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_domain"
+   }
+  },
+  "sagemakeruserprofile": {
+   "Type": "AWS::SageMaker::UserProfile",
+   "Properties": {
+    "DomainId": {
+     "Fn::GetAtt": [
+      "sagemakerdomain",
+      "DomainId"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "project",
+      "Value": "security-lake-ml-insights"
+     }
+    ],
+    "UserProfileName": {
+     "Ref": "sagemakeruserprofilerole48818326"
+    },
+    "UserSettings": {
+     "ExecutionRole": {
+      "Fn::GetAtt": [
+       "sagemakeruserprofilerole48818326",
+       "Arn"
+      ]
+     }
+    }
+   },
+   "DependsOn": [
+    "sagemakerdomain"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_user_profile"
+   }
+  },
+  "sagemakerapp": {
+   "Type": "AWS::SageMaker::App",
+   "Properties": {
+    "AppName": "default",
+    "AppType": "JupyterServer",
+    "DomainId": {
+     "Fn::GetAtt": [
+      "sagemakerdomain",
+      "DomainId"
+     ]
+    },
+    "ResourceSpec": {
+     "InstanceType": "system"
+    },
+    "Tags": [
+     {
+      "Key": "project",
+      "Value": "security-lake-ml-insights"
+     }
+    ],
+    "UserProfileName": {
+     "Ref": "sagemakeruserprofilerole48818326"
+    }
+   },
+   "DependsOn": [
+    "sagemakeruserprofile"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_app"
+   }
+  },
+  "sagemakerconsolepresignedurlrole8BC52AE0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "arn:aws:iam::522814735684:user/Alvin-Admin"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "RoleName": "sagemaker-console-presigned-url-role"
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/sagemaker_console_presigned_url_role/Resource"
+   }
+  },
+  "SageMakerStudioConsoleManagedPolicyFF106714": {
+   "Type": "AWS::IAM::ManagedPolicy",
+   "Properties": {
+    "Description": "Managed policy associated to the AWS console role to access SageMaker Studio Domain presigned URL.",
+    "ManagedPolicyName": "sagemaker-studio-console-access-policy",
+    "Path": "/",
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sagemaker:CreatePresignedDomainUrl",
+       "Condition": {
+        "IpAddress": {
+         "aws:SourceIp": [
+          "0.0.0.0/0"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "sagemakeruserprofile",
+         "UserProfileArn"
+        ]
+       },
+       "Sid": "SMStudioCreatePresignedURLAllow"
+      },
+      {
+       "Action": [
+        "sagemaker:DescribeDomain",
+        "sagemaker:DescribeUserProfile",
+        "sagemaker:ListApps",
+        "sagemaker:ListDomains",
+        "sagemaker:ListUserProfiles"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":sagemaker:us-east-1:522814735684:app/",
+           {
+            "Fn::GetAtt": [
+             "sagemakerdomain",
+             "DomainId"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":sagemaker:us-east-1:522814735684:domain/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":sagemaker:us-east-1:522814735684:user-profile/",
+           {
+            "Fn::GetAtt": [
+             "sagemakerdomain",
+             "DomainId"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ],
+       "Sid": "SMStudioConsoleReadAllow"
+      },
+      {
+       "Action": [
+        "license-manager:ListReceivedLicenses",
+        "sagemaker:GetSagemakerServicecatalogPortfolioStatus",
+        "servicecatalog:ListAcceptedPortfolioShares",
+        "servicecatalog:ListPrincipalsForPortfolio"
+       ],
+       "Effect": "Allow",
+       "Resource": "*",
+       "Sid": "SMStudioServiceCatalogReadAllow"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Roles": [
+     {
+      "Ref": "sagemakerconsolepresignedurlrole8BC52AE0"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/SageMakerStudioConsoleManagedPolicy/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "The specific actions in the SMStudioServiceCatalogReadAllow SID require * resource. The actions are all read-only.",
+       "id": "AwsSolutions-IAM5"
+      }
+     ]
+    }
+   }
+  },
+  "mlinsightsworkgroup": {
+   "Type": "AWS::Athena::WorkGroup",
+   "Properties": {
+    "Description": "Workgroup for Security Lake ML Insights.",
+    "Name": "security_lake_insights",
+    "RecursiveDeleteOption": true,
+    "State": "ENABLED",
+    "WorkGroupConfiguration": {
+     "EnforceWorkGroupConfiguration": true,
+     "PublishCloudWatchMetricsEnabled": false,
+     "RequesterPaysEnabled": false,
+     "ResultConfiguration": {
+      "EncryptionConfiguration": {
+       "EncryptionOption": "SSE_KMS",
+       "KmsKey": {
+        "Fn::GetAtt": [
+         "athenas3outputkmskeyB2EA73AE",
+         "Arn"
+        ]
+       }
+      },
+      "OutputLocation": {
+       "Fn::Join": [
+        "",
+        [
+         "s3://",
+         {
+          "Ref": "athenaoutputs3bucket1FC1F53E"
+         },
+         "/"
+        ]
+       ]
+      }
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/ml_insights_workgroup"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/32SQW/bMAyFf0vvitamw3Z2s7QI2m2Gs6XHgpFpl7UtGiLdIDD83wfZboxhwE7vvY+iQFNe2/WXr/b6Ck6ycnm1qulo+72Cqwyc5KV3nKPjpiG1fYYtCymHs9kUfkmDkdsXEEEVm0Qxcmv7u85VqHcgaCYbm2Y3Sco1ufOCpzyYqhHbP+JYiZLUBBLDaAZTcym2f+LyIXDXxsKHHwy6te0PrYv0kG5M2h1rcvvu6KcBFpdxp/gLjjUufGGJCDsCJfaXw9Fsd2mUH6APoHiCs0kDvYPicvHOKwaPlwPTJHNKVMG9NujV3Nd8euIy1j/s2FqAw0Prtj5vmbzO/Ze4R9cF0vPl4/8PtmVAkX/wzo98MASN7TOetjDq8iyz+w4eSswX/hcYTA0VFhyacVs29gXyjlqoUwwNiRB7MQIlNlBhsP2m8N+4ARpX+1swpIELmkZI2nYwoK/oIV71zKGan3b8tfYKJflxaT87bTs1GQp3weFgPOdo3+TT+/qzvbmx11dvQrQKnVdq0GaT/gF0zI0g8QIAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "SageMakerDomainStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "sagemakernotebookmlinsightsrepositoryURL": {
+   "Description": "The CodeCommit repository URL to clone within your SageMaker user-profile notebook.",
+   "Value": {
+    "Fn::GetAtt": [
+     "sagemakernotebookmlinsightsrepository0055DB11",
+     "CloneUrlHttp"
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

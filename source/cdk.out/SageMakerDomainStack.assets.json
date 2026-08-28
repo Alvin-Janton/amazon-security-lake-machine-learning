@@ -1,0 +1,36 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "269fdf0d823a3f2db8fe94c0a40131033cb75aaa6af40f0003877c6e1797917d": {
+      "displayName": "sagemaker_notebook_ml_insights_repository/PathResolvedCodeAsset",
+      "source": {
+        "path": "asset.269fdf0d823a3f2db8fe94c0a40131033cb75aaa6af40f0003877c6e1797917d.zip",
+        "packaging": "file"
+      },
+      "destinations": {
+        "522814735684-us-east-1-aed79a2a": {
+          "bucketName": "cdk-hnb659fds-assets-522814735684-us-east-1",
+          "objectKey": "269fdf0d823a3f2db8fe94c0a40131033cb75aaa6af40f0003877c6e1797917d.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::522814735684:role/cdk-hnb659fds-file-publishing-role-522814735684-us-east-1"
+        }
+      }
+    },
+    "241e3f652d0c0004163130549de94cc4cee9d6981b392941ae90555bae461ae5": {
+      "displayName": "SageMakerDomainStack Template",
+      "source": {
+        "path": "SageMakerDomainStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "522814735684-us-east-1-84a26733": {
+          "bucketName": "cdk-hnb659fds-assets-522814735684-us-east-1",
+          "objectKey": "241e3f652d0c0004163130549de94cc4cee9d6981b392941ae90555bae461ae5.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::522814735684:role/cdk-hnb659fds-file-publishing-role-522814735684-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
