@@ -1,66 +1,84 @@
-from typing import Any, Dict, List, Optional
+from typing import List, Tuple
 from statsmodels.tsa.seasonal import seasonal_decompose
-from kats.detectors.outlier import OutlierDetector
-from kats.consts import TimeSeriesData
-import pandas as pd
-import numpy as np
 import logging
+import numpy as np
+import pandas as pd
 
 
-class TSATOutlierDetector(OutlierDetector):
+class TSATOutlierDetector:
+    def __init__(self, data: pd.Series, decomp: str = "additive", iqr_mult: float = 3.0) -> None:
+        self.data = data
+        self.decomp = decomp
+        self.iqr_mult = iqr_mult
+        self.outliers: List[List[Tuple[pd.Timestamp, float]]] = []
+        self.outliers_index: List[pd.Timestamp] = []
 
-    def __init__(self, data: TimeSeriesData, decomp: str = "additive", iqr_mult: float = 3.0) -> None:
-        super().__init__(data=data, decomp=decomp, iqr_mult=iqr_mult)
+    def detector(self) -> List[List[Tuple[pd.Timestamp, float]]]:
+        outliers = self.__clean_ts__(self._to_dataframe(self.data))
+        self.outliers = [outliers]
+        return self.outliers
 
-    def __clean_ts__(self, original: pd.DataFrame) -> List:
+    @staticmethod
+    def _to_dataframe(data: pd.Series) -> pd.DataFrame:
+        if not isinstance(data, pd.Series):
+            raise TypeError("TSATOutlierDetector expects a pandas Series")
+        frame = data.to_frame(name="y")
+        frame.index = pd.to_datetime(frame.index)
+        return frame.sort_index()
+
+    def __clean_ts__(self, original: pd.DataFrame) -> List[Tuple[pd.Timestamp, float]]:
         """
-        Performs detection for a single metric. First decomposes the time series
-        and detects outliers when the values in residual time series are beyond the
-        specified multiplier times the inter quartile range
-        Args:
-            original: original time series as DataFrame
-        Returns: List of detected outlier timepoints in each metric
+        Detect outliers by decomposing the time series and measuring residuals
+        against an interquartile-range threshold.
         """
-
-        # pyre-fixme[16]: `DataFrame` has no attribute `index`.
-        original.index = pd.to_datetime(original.index)
+        original = original.copy()
 
         if pd.infer_freq(original.index) is None:
-            # pyre-fixme[9]: original has type `DataFrame`; used as
-            #  `Union[pd.core.frame.DataFrame, pd.core.series.Series]`.
             original = original.asfreq("D")
-            logging.info("Setting frequency to Daily since it cannot be inferred")
+            logging.info("Setting frequency to daily since it cannot be inferred")
 
-        # pyre-fixme[9]: original has type `DataFrame`; used as `Union[None,
-        #  pd.core.frame.DataFrame, pd.core.series.Series]`.
-        original = original.interpolate(
-            method="polynomial", limit_direction="both", order=3
-        )
-
-        # This is a hack since polynomial interpolation is not working here
-        if sum((np.isnan(x) for x in original["y"])):
-            # pyre-fixme[9]: original has type `DataFrame`; used as `Union[None,
-            #  pd.core.frame.DataFrame, pd.core.series.Series]`.
+        try:
+            original = original.interpolate(
+                method="polynomial", limit_direction="both", order=3
+            )
+        except ValueError:
             original = original.interpolate(method="linear", limit_direction="both")
 
-        # Once our own decomposition is ready, we can directly use it here
-        result = seasonal_decompose(original, model=self.decomp)
+        if original["y"].isna().any():
+            original = original.interpolate(method="linear", limit_direction="both")
+
+        original = original.dropna()
+        if len(original) < 4:
+            self.outliers_index = []
+            return []
+
+        period = self._infer_period(original.index, len(original))
+        result = seasonal_decompose(
+            original["y"],
+            model=self.decomp,
+            period=period,
+            extrapolate_trend="freq",
+        )
+
         rem = result.resid
         detrend = original["y"] - result.trend
         strength = float(1 - np.nanvar(rem) / np.nanvar(detrend))
-        if strength >= 0.6:
-            original["y"] = original["y"] - result.seasonal
-        # using IQR as threshold
-        resid = original["y"] - result.trend
-        resid_q = np.nanpercentile(resid, [25, 75])
+        values = original["y"] - result.seasonal if strength >= 0.6 else original["y"]
+
+        resid = values - result.trend
+        resid_q = np.nanpercentile(resid.dropna(), [25, 75])
         iqr = resid_q[1] - resid_q[0]
-        #         limits = resid_q + (self.iqr_mult * iqr * np.array([-1, 1]))
+        if iqr == 0 or np.isnan(iqr):
+            self.outliers_index = []
+            return []
 
         iqr_mults = resid.abs() / iqr
-        outliers_iqr_mults = iqr_mults[iqr_mults > self.iqr_mult]
+        outliers_iqr_mults = iqr_mults[iqr_mults > self.iqr_mult].dropna()
+        self.outliers_index = list(outliers_iqr_mults.index)
+        return list(zip(self.outliers_index, outliers_iqr_mults.astype(float)))
 
-        #         pdb.set_trace()
-
-        #         outliers = resid[(resid >= limits[1]) | (resid <= limits[0])]
-        self.outliers_index = outliers_index = list(outliers_iqr_mults.index)
-        return list(zip(outliers_index, outliers_iqr_mults))
+    @staticmethod
+    def _infer_period(index: pd.DatetimeIndex, series_length: int) -> int:
+        if series_length >= 14:
+            return 7
+        return max(2, min(series_length // 2, 7))

@@ -5,8 +5,6 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 import re
 
-from kats.detectors.cusum_detection import CUSUMDetector
-from kats.consts import TimeSeriesData
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.tsa.stattools import adfuller
 from sklearn.linear_model import LinearRegression
@@ -58,10 +56,14 @@ def plot_timeseries_decomp(ts, model='additive', figsize=(12,12)):
     for ax in fig.axes: ax.grid()
     plt.show()
 
-# def plot_vertical_timestamp_lines(ax, timestamps, alpha=1.0):
-#     for timestamp in timestamps:
-#         _ = ax.axvline(x=timestamp, color='red', alpha=alpha)
-#     return ax
+def plot_single_timeseries(ts, ax=None, figsize=(12,4), xlabel='date', ylabel=None, alpha=1., color='tab:blue',
+                           linewidth=1., grid=True, **plot_kwargs):
+    return MiloTimeseries.plot_single_timeseries(
+        ts, ax, figsize, xlabel, ylabel, alpha, color, linewidth, grid, **plot_kwargs)
+
+
+def plot_vertical_timestamp_lines(ax, timestamps, alpha=1.0):
+    return MiloTimeseries.plot_vertical_timestamp_lines(ax, timestamps, alpha)
 
 
 class MiloTimeseries:
@@ -78,7 +80,6 @@ class MiloTimeseries:
         self.keyvals = keyvals
         self._wheres, self._selects = None, None
         self.source_sql = source_sql
-        self._kats_ts = None
         
         self.outliers = None
         self._max_outlier_iqr_mult = None
@@ -191,8 +192,7 @@ class MiloTimeseries:
         
     @property
     def kats_ts(self):
-        if self._kats_ts is None: self._kats_ts = self.convert_to_kats(self.ts)
-        return self._kats_ts
+        return self.ts
     
     @property
     def max_outlier_iqr_mult(self):
@@ -218,7 +218,6 @@ class MiloTimeseries:
     def plot_single_timeseries(ts, ax=None, figsize=(12,4), xlabel='date', ylabel=None, alpha=1., color='tab:blue',
                            linewidth=1., grid=True, **plot_kwargs):
         if ax is None: fig, ax = plt.subplots(figsize=figsize)
-        if isinstance(ts, TimeSeriesData): ts = convert_from_kats(ts)
         ts.plot(ax=ax, alpha=alpha, color=color, linewidth=linewidth, legend=False, **plot_kwargs)
         ax.set_xlabel(xlabel)
         ax.set_ylabel(ylabel)
@@ -233,13 +232,11 @@ class MiloTimeseries:
     
     @staticmethod
     def convert_from_kats(kats_ts):
-        return kats_ts.to_dataframe().set_index('time')
+        raise NotImplementedError('Kats is no longer used; pass pandas Series values directly')
 
     @staticmethod
     def convert_to_kats(ts):
-        tmp = ts.to_frame(name='value').reset_index()
-        tmp.columns = ['time', 'value']
-        return TimeSeriesData(tmp)
+        raise NotImplementedError('Kats is no longer used; pass pandas Series values directly')
     
     @staticmethod
     def compute_timeseries_slope(ts, order=1):
@@ -272,7 +269,7 @@ class MiloOutlier(TimestampOfInterest):
 
 
 def get_outliers(milo_ts, iqr_mult_thresh=5., decomp='additive'):
-    outlier_detector = TSATOutlierDetector(milo_ts.kats_ts, decomp='additive', iqr_mult=iqr_mult_thresh)
+    outlier_detector = TSATOutlierDetector(milo_ts.ts, decomp=decomp, iqr_mult=iqr_mult_thresh)
     outlier_detector.detector()
     outliers = outlier_detector.outliers[0]
     milo_outliers = []
@@ -315,14 +312,41 @@ class MiloChangepoint(TimestampOfInterest):
     
     
 def get_changepoints(milo_ts, threshold=0.01, detector_kwargs={}):
-    detector = CUSUMDetector(milo_ts.kats_ts)
-    changepoint_tuples = detector.detector(return_all_changepoints=False, threshold=threshold, **detector_kwargs)
+    try:
+        import ruptures as rpt
+    except ImportError as exc:
+        raise ImportError("ruptures is required for change point detection. Install it with `pip install ruptures`.") from exc
+
+    ts = milo_ts.ts.dropna().sort_index()
+    if len(ts) < 4:
+        return []
+
+    values = ts.to_numpy(dtype=float).reshape(-1, 1)
+    model = detector_kwargs.get("model", "l2")
+    algorithm = detector_kwargs.get("algorithm", "pelt")
+    min_size = detector_kwargs.get("min_size", 2)
+    jump = detector_kwargs.get("jump", 1)
+    penalty = detector_kwargs.get("penalty", max(float(threshold) * len(ts), 1.0))
+
+    if algorithm == "binseg":
+        n_bkps = detector_kwargs.get("n_bkps", 1)
+        change_points = rpt.Binseg(model=model, min_size=min_size, jump=jump).fit(values).predict(n_bkps=n_bkps)
+    else:
+        change_points = rpt.Pelt(model=model, min_size=min_size, jump=jump).fit(values).predict(pen=penalty)
+
     milo_changepoints = []
-    for kats_cp, metadata in changepoint_tuples:
+    for change_point in change_points:
+        if change_point >= len(ts):
+            continue
+        before = ts.iloc[:change_point]
+        after = ts.iloc[change_point:]
+        if before.empty or after.empty:
+            continue
+        direction = "increase" if after.mean() > before.mean() else "decrease"
         milo_cp = MiloChangepoint(
-            timestamp=kats_cp.start_time,
-            conf=kats_cp.confidence,
-            direction=metadata.direction,
-            metadata=metadata)
+            timestamp=ts.index[change_point],
+            conf=1.0,
+            direction=direction,
+            metadata={"algorithm": algorithm, "model": model, "penalty": penalty})
         milo_changepoints.append(milo_cp)
     return milo_changepoints
