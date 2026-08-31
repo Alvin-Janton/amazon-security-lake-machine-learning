@@ -33,7 +33,21 @@ export class SageMakerDomainStack extends Stack {
     const security_lake_database_name = contextString("securityLakeDatabaseName", "amazon_security_lake_glue_db_us_east_1");
     const security_lake_table_name = contextString("securityLakeTableName", "amazon_security_lake_table_us_east_1_sh_findings_2_0");
     const athena_workgroup_name = contextString("athenaWorkgroupName", "security_lake_insights");
+    const bedrock_model_id = contextString("bedrockModelId", "us.anthropic.claude-sonnet-4-6");
     const create_lake_formation_permissions = contextBoolean("createLakeFormationPermissions", false);
+    const bedrock_model_resources = bedrock_model_id.startsWith("arn:")
+      ? [
+        bedrock_model_id,
+        "arn:" + this.partition + ":bedrock:*::foundation-model/*",
+      ]
+      : bedrock_model_id.startsWith("us.") || bedrock_model_id.startsWith("eu.") || bedrock_model_id.startsWith("apac.") || bedrock_model_id.startsWith("global.")
+        ? [
+          "arn:" + this.partition + ":bedrock:" + this.region + ":" + this.account + ":inference-profile/" + bedrock_model_id,
+          "arn:" + this.partition + ":bedrock:*::foundation-model/*",
+        ]
+        : [
+          "arn:" + this.partition + ":bedrock:" + this.region + "::foundation-model/" + bedrock_model_id,
+        ];
 
     // CodeCommit repository
     const sagemaker_notebook_ml_insights_repository = new codecommit.Repository(this, 'sagemaker_notebook_ml_insights_repository', {
@@ -512,6 +526,15 @@ export class SageMakerDomainStack extends Stack {
             "arn:aws:sagemaker:" + this.region + ":" + this.account +":app/*",
           ]   
         }),
+        new iam.PolicyStatement({
+          sid: "BedrockInvokeAllow",
+          effect: iam.Effect.ALLOW,
+          actions: [
+            "bedrock:InvokeModel",
+            "bedrock:InvokeModelWithResponseStream"
+          ],
+          resources: bedrock_model_resources
+        }),
       ],
     });
 
@@ -843,7 +866,7 @@ export class SageMakerDomainStack extends Stack {
       [
         {
           id: 'AwsSolutions-IAM5',
-          reason: 'The specific actions in the S3Read and LakeFormationAllow SID require * resource. The actions are all read-only.',
+          reason: 'The specific actions in the S3Read and LakeFormationAllow SID require * resource. Bedrock cross-region inference also requires wildcard foundation-model resources for the routed model regions.',
         },
       ]
     );

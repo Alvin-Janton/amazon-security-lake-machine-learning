@@ -5,6 +5,7 @@
   "securityLakeDatabaseName": "amazon_security_lake_glue_db_us_east_1",
   "securityLakeTableName": "amazon_security_lake_table_us_east_1_sh_findings_2_0",
   "athenaWorkgroupName": "security_lake_insights",
+  "bedrockModelId": "us.anthropic.claude-sonnet-4-6",
   "createLakeFormationPermissions": true,
   "availability-zones:account=522814735684:region=us-east-1": [
     "us-east-1a",

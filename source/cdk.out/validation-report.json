@@ -28,7 +28,7 @@
               },
               "stackTraces": [
                 "...Connections.allowTo in aws-cdk-lib...",
-                "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:130:39)",
+                "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:144:39)",
                 "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
               ]
             },
@@ -45,7 +45,7 @@
               },
               "stackTraces": [
                 "...Connections.allowFrom in aws-cdk-lib...",
-                "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:136:39)",
+                "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:150:39)",
                 "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
               ]
             }
@@ -75,7 +75,7 @@
               },
               "stackTraces": [
                 "...new Bucket2 in aws-cdk-lib...",
-                "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:242:28)",
+                "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:256:28)",
                 "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
                 "...node internals, ts-node, ts-node..."
               ]
@@ -84,7 +84,7 @@
           "acknowledgedId": "CloudFormation-Validate::W3045",
           "reason": "accessControl is deprecated, but we are still using it for historical reasons.",
           "acknowledgedAt": "SageMakerDomainStack/s3_access_logs",
-          "acknowledgedStackTrace": "    ...new Bucket2 in aws-cdk-lib...\n    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:261:37)\n    at <anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)\n    ...node internals, ts-node..."
+          "acknowledgedStackTrace": "    ...new Bucket2 in aws-cdk-lib...\n    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:275:37)\n    at <anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)\n    ...node internals, ts-node..."
         }
       ]
     }

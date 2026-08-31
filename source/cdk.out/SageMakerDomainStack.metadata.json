@@ -16,7 +16,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:45:5)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:59:5)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -30,7 +30,7 @@
       },
       "trace": [
         "    ...new Bucket2 in aws-cdk-lib...",
-        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:261:37)",
+        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:275:37)",
         "    at <anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "    ...node internals, ts-node..."
       ]
@@ -44,7 +44,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:541:7)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:564:7)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -58,7 +58,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:555:7)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:578:7)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -72,7 +72,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:571:30)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:594:30)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -86,7 +86,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:654:36)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:677:36)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -100,7 +100,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:704:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:727:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -114,7 +114,7 @@
     {
       "type": "aws:cdk:creationStack",
       "data": [
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:803:35)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:826:35)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -155,7 +155,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Repository2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:39:55)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:53:55)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -170,7 +170,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Key2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:52:38)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:66:38)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -185,7 +185,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Key2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:61:31)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:75:31)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -200,7 +200,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new LogGroup2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:69:26)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:83:26)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -215,7 +215,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -230,7 +230,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -245,7 +245,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -259,7 +259,7 @@
       },
       "trace": [
         "    ...new Vpc2 in aws-cdk-lib...",
-        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "    at <anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "    ...node internals, ts-node..."
       ]
@@ -271,7 +271,7 @@
       },
       "trace": [
         "    ...new Vpc2 in aws-cdk-lib...",
-        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "    at new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "    at <anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "    ...node internals, ts-node..."
       ]
@@ -286,7 +286,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new SecurityGroup2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:121:35)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:135:35)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -345,7 +345,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...Connections.allowTo in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:128:39)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:142:39)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -359,7 +359,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...Connections.allowTo in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:129:39)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:143:39)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -373,7 +373,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...Connections.allowTo in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:130:39)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:144:39)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -387,7 +387,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...Connections.allowFrom in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:134:39)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:148:39)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -401,7 +401,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...Connections.allowFrom in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:135:39)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:149:39)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -415,7 +415,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...Connections.allowFrom in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:136:39)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:150:39)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -429,7 +429,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...Connections.allowFrom in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:137:39)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:151:39)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -443,7 +443,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Bucket2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:242:28)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:256:28)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -458,7 +458,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Bucket2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:261:37)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:275:37)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -473,7 +473,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Role2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:283:41)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:297:41)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -488,7 +488,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new ManagedPolicy2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:533:5)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:556:5)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -503,7 +503,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Role2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:724:50)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:747:50)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -518,7 +518,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new ManagedPolicy2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:783:5)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:806:5)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -547,7 +547,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Key2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:52:38)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:66:38)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -562,7 +562,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Key2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:61:31)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:75:31)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -621,7 +621,7 @@
         "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:208 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -636,7 +636,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -651,7 +651,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -710,7 +710,7 @@
         "...C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:208 in aws-cdk-lib...",
         "Array.forEach (:)",
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -725,7 +725,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -740,7 +740,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -797,7 +797,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals..."
       ]
@@ -854,7 +854,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals..."
       ]
@@ -869,7 +869,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node..."
       ]
@@ -884,7 +884,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:139:19)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:153:19)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -899,7 +899,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:152:19)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:166:19)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -914,7 +914,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:166:19)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:180:19)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -929,7 +929,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:179:19)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:193:19)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -944,7 +944,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:192:19)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:206:19)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -959,7 +959,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:205:19)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:219:19)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -974,7 +974,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:217:19)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:231:19)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -989,7 +989,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...WrappedClass.addInterfaceEndpoint in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:229:19)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:243:19)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)",
         "...node internals, ts-node, ts-node..."
       ]
@@ -1004,7 +1004,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Bucket2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:242:28)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:256:28)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -1018,7 +1018,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Bucket2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:261:37)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:275:37)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }
@@ -1032,7 +1032,7 @@
       "type": "aws:cdk:creationStack",
       "data": [
         "...new Vpc2 in aws-cdk-lib...",
-        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:99:27)",
+        "new SageMakerDomainStack (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\lib\\sagemaker_domain.ts:113:27)",
         "<anonymous> (C:\\Users\\alvin\\OneDrive\\Desktop\\GitHub_Repos\\Security_Lake\\amazon-security-lake-machine-learning\\source\\bin\\source.ts:9:1)"
       ]
     }

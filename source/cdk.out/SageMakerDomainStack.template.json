@@ -1707,6 +1707,40 @@
        "Effect": "Allow",
        "Resource": "arn:aws:sagemaker:us-east-1:522814735684:app/*",
        "Sid": "SageMakerPermissions"
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":bedrock:*::foundation-model/*"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":bedrock:us-east-1:522814735684:inference-profile/us.anthropic.claude-sonnet-4-6"
+          ]
+         ]
+        }
+       ],
+       "Sid": "BedrockInvokeAllow"
       }
      ],
      "Version": "2012-10-17"
@@ -1722,7 +1756,7 @@
     "cdk_nag": {
      "rules_to_suppress": [
       {
-       "reason": "The specific actions in the S3Read and LakeFormationAllow SID require * resource. The actions are all read-only.",
+       "reason": "The specific actions in the S3Read and LakeFormationAllow SID require * resource. Bedrock cross-region inference also requires wildcard foundation-model resources for the routed model regions.",
        "id": "AwsSolutions-IAM5"
       }
      ]
