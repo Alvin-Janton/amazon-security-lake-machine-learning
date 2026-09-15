@@ -43,8 +43,6 @@ This CDK stack does not create Security Lake, Security Hub, or the Security Lake
 
 ![Solution Architecture](sagemaker_ml_insights_architecture.png)
 
-The diagram is inherited from the original AWS sample and may still show the older multi-account layout. In this fork, the intended architecture is single-account:
-
 1. Security Lake, Glue, Lake Formation, Athena, SageMaker, CodeCommit, and the Athena output bucket live in the same AWS account.
 2. Security Lake writes normalized OCSF data into S3 and exposes it through Glue tables.
 3. Lake Formation controls access to the Security Lake database and tables.
