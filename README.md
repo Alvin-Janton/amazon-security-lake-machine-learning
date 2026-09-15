@@ -54,7 +54,6 @@ The diagram is inherited from the original AWS sample and may still show the old
 7. An Athena workgroup and encrypted S3 results bucket are created for notebook queries.
 8. Optional Lake Formation grants can be created by CDK for the SageMaker user profile role.
 
-The architecture image should be updated before publishing a polished public fork.
 
 ## Configure CDK Context
 

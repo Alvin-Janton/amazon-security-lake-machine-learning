@@ -142,4 +142,3 @@ Before publishing this fork, review:
 - `source/notebooks/tsat/*.ipynb`
 - `sagemaker_ml_insights_architecture.png`
 
-The architecture diagram should be updated to show the single-account architecture. The current diagram may still contain visual elements from the original multi-account AWS sample.
