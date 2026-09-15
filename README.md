@@ -1,142 +1,248 @@
-# **Sagemaker-ML-Insights**
+# SageMaker ML Insights for Amazon Security Lake
 
-The project deploys a [Amazon SageMaker Studio](https://aws.amazon.com/sagemaker/studio/) domain and foundational infrastructure to query and load [Amazon Security Lake](https://aws.amazon.com/security-lake/). Once deployed, you can use SageMaker notebooks to run machine learning analytics against your security data to identify trends, anomalies and patterns.
+This repository is a modernized fork of the AWS sample [amazon-security-lake-machine-learning](https://github.com/aws-samples/amazon-security-lake-machine-learning). The original sample used a multi-account Security Lake subscriber architecture. This fork has been updated to deploy the SageMaker ML insights environment into a single AWS account.
 
-By running machine learning analytics specific to your AWS environment, you will be able to quickly deploy and utilize SageMaker's capabilities to explore and derive ML powered insights from Security Lake data. This will enable you to idenfity different areas of interest to focus on and increase your overall security posture. The solution has a base set of notebooks that are meant to serve as a starting point and looks at [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html) findings but can be expanded to incorporate other Security Lake native or custom data sources.
-<br>
+The project deploys an [Amazon SageMaker Studio](https://aws.amazon.com/sagemaker/studio/) domain and supporting infrastructure for querying [Amazon Security Lake](https://aws.amazon.com/security-lake/) data with Athena. The included notebooks provide a starting point for time-series analysis, trend detection, outlier detection, and change-point detection against Security Hub findings stored in Security Lake.
 
-## **Prerequisites**
+For a detailed list of changes from the original AWS sample, see [MODERNIZATION_NOTES.md](MODERNIZATION_NOTES.md).
 
-1. [Enable Amazon Security Lake](https://docs.aws.amazon.com/security-lake/latest/userguide/getting-started.html). For multiple AWS accounts, it is recommended to manage [Security Lake for AWS Organizations](https://docs.aws.amazon.com/security-lake/latest/userguide/multi-account-management.html) To help automate and streamline the management of multiple accounts, we strongly recommend that you integrate Security Lake with AWS Organizations.
-2. As part of this solution, we are focusing on AWS Security Hub so you will need to enable [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html) and configure [AWS Security Hub](https://docs.aws.amazon.com/security-lake/latest/userguide/securityhub-integration.html) as a data source to Security Lake.
-3. [Subcriber Query Access](https://docs.aws.amazon.com/security-lake/latest/userguide/subscriber-query-access.html): Subscribers with query access can query data that Security Lake collects. These subscribers directly query AWS Lake Formation tables in your S3 bucket with services like Amazon Athena.
-4. Resource Linking: Create a Lake Formation database in Machine Learning (ML) insights Subcriber account using resource linking
-    - Go to Lake Formation in the ML Insights Subscriber AWS account
-    - Create a new database using resource linking
-    - Enter Resource Link name
-    - Enter Shared database name and shared database Owner ID and click create
-<br><br>
+## What This Fork Changes
 
-## **Solution Architecture**
-![Solution Architecture](/sagemaker_ml_insights_architecture.png)
+- Uses a single AWS account instead of a separate Security Lake account and SageMaker subscriber account.
+- Removes the original Resource Access Manager and Lake Formation resource-linking workflow.
+- Assumes Amazon Security Lake already exists in the same account.
+- Grants the SageMaker execution role access to the configured Security Lake Glue database and table with Lake Formation, when enabled.
+- Uses context values instead of hardcoded account-specific settings.
+- Updates the notebooks and supporting Python code for modern Python environments, including Python 3.12.
+- Adds Bedrock invoke permissions for the SageMaker user profile so later lab notebooks can use a modern Bedrock model or inference profile.
 
-1. Security Lake is setup in a separate AWS account with the appropriate sources (i.e. VPC Flow Logs, Security Hub, CloudTrail, Route53) configured.
-2. Create subscriber query access from source Security Lake AWS account to ML Insights Subscriber AWS account.
-3. Resource share request accepted in the Subscriber AWS account where this solution is deployed.
-4. Create a database in Lake Formation in the Subscriber AWS account and grant access for the Athena tables in the Security Lake AWS account.
-5. VPC is provisioned for SageMaker with an IGW, NAT GW, and VPC endpoints for all AWS services within the solution. IGW/NAT is required to install external open-source packages.
-6. SageMaker Studio Domain is created in VPCOnly mode with a single SageMaker user-profile that is tied to a dedicated IAM role. As part of the SageMaker deployment, an EFS also gets provisioned for the SageMaker Domain.
-7. A dedicated IAM role is created to restrict access to create/access SageMaker Domain's presigned URL from a specific CIDR for accessing the SageMaker notebook.
-8. CodeCommit repository containing python notebooks utilized for the AI/ML workflow by the SageMaker user-profile.
-9. Athena workgroup is created for Security Lake queries with a S3 bucket for output location (Access logging configured for the output bucket).
-<br><br>
+## Prerequisites
 
-## **Deploy Sagemaker Studio using CDK**
+Before deploying this stack, complete these items in the same AWS account and region where you will deploy SageMaker:
 
-**Build**
+1. Enable Amazon Security Lake.
+2. Enable AWS Security Hub and ensure Security Hub findings are available as a Security Lake source.
+3. Confirm that the Security Lake Glue database exists. The default expected database name is:
 
-To build this app, you need to be in the cdk project root folder [`source`](/source/). Then run the following:
+   ```text
+   amazon_security_lake_glue_db_us_east_1
+   ```
 
-    $ npm install -g aws-cdk
-    <installs AWS CDK>
+4. Confirm that the Security Hub findings table exists. The default expected table name is:
 
-    $ npm install
-    <installs appropriate packages>
+   ```text
+   amazon_security_lake_table_us_east_1_sh_findings_2_0
+   ```
 
-    $ npm run build
-    <build TypeScript files>
+5. Make sure the principal deploying the CDK stack has enough IAM, Glue, Lake Formation, SageMaker, CodeCommit, S3, KMS, Athena, EC2, and CloudFormation permissions.
+6. If `createLakeFormationPermissions` is set to `true`, the deploying principal must be allowed to grant Lake Formation permissions on the Security Lake database and table.
 
-**Deploy**
+This CDK stack does not create Security Lake, Security Hub, or the Security Lake source tables.
 
-    $ cdk bootstrap aws://<INSERT_AWS_ACCOUNT>/<INSERT_REGION>
-    <build S3 bucket to store files to perform deployment>
+## Solution Architecture
 
-    $ cdk deploy SageMakerDomainStack
-    <deploys the cdk project into the authenticated AWS account>
+![Solution Architecture](sagemaker_ml_insights_architecture.png)
 
-As part of the CDK deployment, there is an Output value for the CodeCommit repo URL (sagemakernotebookmlinsightsrepositoryURL). You will need this value later on to get the python notebooks into your SageMaker app.
+The diagram is inherited from the original AWS sample and may still show the older multi-account layout. In this fork, the intended architecture is single-account:
 
-## **Post Deployment Steps**
+1. Security Lake, Glue, Lake Formation, Athena, SageMaker, CodeCommit, and the Athena output bucket live in the same AWS account.
+2. Security Lake writes normalized OCSF data into S3 and exposes it through Glue tables.
+3. Lake Formation controls access to the Security Lake database and tables.
+4. SageMaker Studio runs in `VpcOnly` mode inside a dedicated VPC.
+5. SageMaker notebooks use Athena to query the configured Security Lake Glue table.
+6. A CodeCommit repository is created and populated with the notebooks.
+7. An Athena workgroup and encrypted S3 results bucket are created for notebook queries.
+8. Optional Lake Formation grants can be created by CDK for the SageMaker user profile role.
 
-**Access to Security Lake**
+The architecture image should be updated before publishing a polished public fork.
 
-Now that you have deployed the SageMaker solution, you will need to grant SageMaker's user-profile in your AWS account access to query Security Lake from the AWS account it was enabled in. We will use the "Grant" permisson to allow the Sagemaker user profile ARN to access Security Lake Database in Lake Formation within the ML Insights Subscriber AWS account.
+## Configure CDK Context
 
-**Grant permisson to Security Lake Database**
-1. Copy ARN “arn:aws:iam::********************:role/sagemaker-user-profile-for-security-hub” 
-2. Go to Lake Formation in console
-3. Click on amazon_security_lake_glue_db_us_east_1 database
-4. From Actions Dropdown choose Grant
-5. In grant Data Permissions select SAML Users and Groups
-6. Paste the SageMaker Domain user profile ARN
-7. In Database Permissions choose Describe and click on Grant 
-<br><br> 
+Create `source/cdk.context.json` before deploying. Do not commit a personal context file with real account IDs, principal ARNs, or cached CDK lookups.
 
-**Grant permisson to Security Lake - Security Hub Table**
-1. Copy ARN “arn:aws:iam::********************:role/sagemaker-user-profile-for-security-hub” 
-2. Go to Lake Formation in console
-3. Click on amazon_security_lake_glue_db_us_east_1 database and the click on view tables button
-4. Click on amazon_security_lake_table_us_east_1_sh_findings table
-5. From Actions Dropdown choose Grant
-6. In grant Data Permissions select SAML Users and Groups
-7. Paste the SageMaker Domain user profile ARN
-8. In Table Permissions choose Describe and select then click on Grant
-<br>
+Example:
 
-**CodeCommit**
-- Note: The Output (sagemakernotebookmlinsightsrepositoryURL) from the CDK deployment will have the CodeCommit repo URL.
+```json
+{
+  "sagemakerRestrictCidrPresignedUrl": "YOUR_PUBLIC_IP/32",
+  "sagemakerPresignedUrlTrustedPrincipalArn": "arn:aws:iam::<account-id>:user/<your-iam-user>",
+  "cloudWatchVpcFlowLogsLogGroupName": "/aws/vpc/flowlogs/SageMakerDomainStack",
+  "securityLakeDatabaseName": "amazon_security_lake_glue_db_us_east_1",
+  "securityLakeTableName": "amazon_security_lake_table_us_east_1_sh_findings_2_0",
+  "athenaWorkgroupName": "security_lake_insights",
+  "bedrockModelId": "us.anthropic.claude-sonnet-4-6",
+  "createLakeFormationPermissions": true
+}
+```
 
-##### Option 1: 
-1. Open your SageMaker Studio app 
-2. In Studio, in the left sidebar, choose the Git icon (identified by a diamond with two branches), then choose Clone a Repository.
-3. For the URI, enter the HTTPS URL (Output value for SageMakerDomainStack.sagemakernotebookmlinsightsrepositoryURL) of the CodeCommit repository, then choose Clone.
-4. In the left sidebar, choose the file browser icon. You will see a folder with the notebook repository
+Context values:
 
-##### Option 2:
-1. Open your SageMaker Studio app 
-2. In the top navigation bar, choose File >> New >> Terminal
-3. Type in the following command: 
+- `sagemakerRestrictCidrPresignedUrl`: CIDR allowed to create SageMaker Studio presigned URLs.
+- `sagemakerPresignedUrlTrustedPrincipalArn`: IAM principal that can assume the SageMaker console presigned URL role.
+- `cloudWatchVpcFlowLogsLogGroupName`: CloudWatch log group for VPC flow logs.
+- `securityLakeDatabaseName`: Existing Security Lake Glue database name.
+- `securityLakeTableName`: Existing Security Lake table used by the notebooks.
+- `athenaWorkgroupName`: Athena workgroup created for notebook queries.
+- `bedrockModelId`: Bedrock model ID, inference profile ID, or model ARN used by later notebooks.
+- `createLakeFormationPermissions`: Set to `true` to let CDK grant the SageMaker role database/table permissions. Set to `false` if you prefer to manage Lake Formation permissions manually.
 
-    `$ git clone <'Output value for SageMakerDomainStack.sagemakernotebookmlinsightsrepositoryURL'>`
-    <clones notebook repository>
+## Deploy SageMaker Studio with CDK
 
-<br>
+Run these commands from the CDK project folder:
 
-## **Generating ML Insights using Sagemaker Studio**
-Now that you have completed the post deployment steps. You are ready to start generating ML insights. The python notebooks which are deployed as part of the solution provide a starting point for how you can conduct AI/ML analysis using data within Security Lake. These can be expanded to any native or custom data sources configured on Security Lake.
-<br>
+```powershell
+cd source
+npm install
+npm run build
+```
 
-**Environment Setup:**
-![0.0-tsat-environ-setup](source/notebooks/tsat/0.0-tsat-environ-setup.ipynb)
-- Installs all the required libraries and dependencies that are needed for notebooks to run Trend Detector, Outlier Detection and changepoint Detection.
+Bootstrap your account and region if needed:
 
-**Load Data:**
-![0.1-load-data](source/notebooks/tsat/0.1-load-data.ipynb)
-- Establish the Athena connection to query data in Security Lake and create a time series dataset.
-- Note : This notebook queries Security Hub Findings data from Security Lake and can be extended to any other Security Lake data source. To do so, change the TABLE parameter from security hub findings to any desired data source within Security Lake.
-    
-**Trend Detector:**
-![1.1-trend-detector](source/notebooks/tsat/1.1-trend-detector.ipynb)
-- Trend represents a directional change in the level of a time series. This directional change can be either upward (increase in level) or downward (decrease in level)
-- Slopes are used identify the relationship between x(time) & y(counts). The trend is up when the slope is positive and is down when the slope is negative.
-- Trend detection helps detect a change, while ignoring the noise from natural variability. Each environment is different and trends help us identify where to look more closely to determine why that trend is positive or negative.
+```powershell
+npx cdk bootstrap aws://<account-id>/<region>
+```
 
-**Outlier Detection:**
-![1.2-outlier-detection](source/notebooks/tsat/1.2-outlier-detection.ipynb)
-- We do a seasonal decomposition of the input time series, with additive or multiplicative decomposition as specified (default is additive).
-- We generate a residual time series by either removing only trend or both trend and seasonality if the seasonality is strong.
-- We detect points in the residual which are outside 3 times the inter quartile range. This multiplier can be tuned using the iqr_mult parameter in OutlierDetector.
-- The intent is to discover useful, abnormal, and irregular patterns within in data sets, allowing you to pinpoint areas of interest.
+Deploy the stack:
 
-**Change point Detection:**
-![1.3-changepoint-detector](source/notebooks/tsat/1.3-changepoint-detector.ipynb)
-- Change point detection is a method to detect sudden changes in a time series that persist over time, such as a change in the mean value.
-- To detect a base line to identify when several changes might have occurred from that point.
+```powershell
+npx cdk deploy SageMakerDomainStack
+```
 
-## **Security**
+The stack output includes the CodeCommit repository URL:
+
+```text
+sagemakernotebookmlinsightsrepositoryURL
+```
+
+Use that URL from SageMaker Studio or a local terminal to clone the notebook repository.
+
+## What the Stack Creates
+
+- SageMaker Studio domain in `VpcOnly` mode.
+- SageMaker user profile and execution role.
+- IAM role for restricted SageMaker Studio presigned URL access.
+- VPC, private workload subnets, NAT egress, security group rules, and VPC endpoints.
+- CodeCommit repository containing the notebooks.
+- Athena workgroup for Security Lake ML insights.
+- Encrypted S3 bucket for Athena query results.
+- KMS keys for SageMaker and Athena result storage.
+- Optional Lake Formation permissions for the configured Security Lake database/table.
+
+## What the Stack Does Not Create
+
+- Amazon Security Lake.
+- AWS Security Hub.
+- Security Lake source configuration.
+- Security Lake Glue database or tables.
+- Cross-account RAM resource shares.
+- Lake Formation resource links.
+
+## Post-Deployment Steps
+
+### 1. Open SageMaker Studio
+
+Open the deployed SageMaker Studio domain and create or open a Jupyter experience. The SageMaker UI has changed since the original AWS blog, so the exact labels may differ. A JupyterLab or Code Editor space with a Python 3 kernel is suitable.
+
+### 2. Clone the Notebook Repository
+
+You can clone the CodeCommit repository from a SageMaker terminal:
+
+```bash
+git clone <sagemakernotebookmlinsightsrepositoryURL>
+```
+
+If CodeCommit prompts for credentials, use the normal AWS CodeCommit credential helper or clone from a terminal that already has AWS credentials available.
+
+### 3. Verify Lake Formation Access
+
+If `createLakeFormationPermissions` was `true`, CDK attempts to grant the SageMaker role:
+
+- `DESCRIBE` on the configured Security Lake database.
+- `DESCRIBE` and `SELECT` on the configured Security Lake table.
+
+If you disabled CDK-managed grants, manually grant those Lake Formation permissions to:
+
+```text
+arn:aws:iam::<account-id>:role/sagemaker-user-profile-for-security-lake
+```
+
+### 4. Run the Notebooks
+
+Start with:
+
+```text
+source/notebooks/tsat/0.0-tsat-environ-setup.ipynb
+source/notebooks/tsat/0.1-load-data.ipynb
+```
+
+Then run the analysis notebooks:
+
+```text
+source/notebooks/tsat/1.1-trend-detector.ipynb
+source/notebooks/tsat/1.2-outlier-detection.ipynb
+source/notebooks/tsat/1.3-changepoint-detector.ipynb
+```
+
+The notebook text still includes some original lab wording. Some library references were kept for historical context, even though the implementation has been modernized to avoid outdated dependencies where needed.
+
+## Notebook Summary
+
+### Environment Setup
+
+[0.0-tsat-environ-setup.ipynb](source/notebooks/tsat/0.0-tsat-environ-setup.ipynb)
+
+Installs the required Python libraries for the notebook workflow.
+
+### Load Data
+
+[0.1-load-data.ipynb](source/notebooks/tsat/0.1-load-data.ipynb)
+
+Connects to Athena, queries Security Lake data, and creates time-series datasets. The default query targets Security Hub findings, but you can adapt it to other Security Lake tables by updating the configured table and SQL fields.
+
+### Trend Detector
+
+[1.1-trend-detector.ipynb](source/notebooks/tsat/1.1-trend-detector.ipynb)
+
+Identifies positive and negative trends in grouped time-series data.
+
+### Outlier Detection
+
+[1.2-outlier-detection.ipynb](source/notebooks/tsat/1.2-outlier-detection.ipynb)
+
+Uses decomposition and residual analysis to find unusual data points.
+
+### Change-Point Detection
+
+[1.3-changepoint-detector.ipynb](source/notebooks/tsat/1.3-changepoint-detector.ipynb)
+
+Detects sustained changes in a time series, such as shifts in count or mean level.
+
+## Troubleshooting
+
+### Lake Formation Permission Errors
+
+If Athena reports that the requester is not authorized or that Glue resources cannot be accessed, verify:
+
+- The Security Lake database and table names match your account.
+- The SageMaker role has Lake Formation `DESCRIBE` and `SELECT` permissions.
+- The deploying principal had permission to create `AWS::LakeFormation::PrincipalPermissions`.
+
+### Schema Mismatches
+
+Security Lake table schemas can vary by source and OCSF version. If a notebook query fails with `COLUMN_NOT_FOUND`, inspect the Glue table schema and update the SQL fields accordingly. The modernized notebooks were tested against Security Lake v2-style table names such as:
+
+```text
+amazon_security_lake_table_us_east_1_sh_findings_2_0
+```
+
+### SageMaker UI Differences
+
+The original blog screenshots may reference older SageMaker Studio navigation. In the current UI, use JupyterLab or Code Editor spaces and clone the notebook repository from a terminal when the Git sidebar workflow is unavailable.
+
+## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
 
-## **License**
+## License
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.
